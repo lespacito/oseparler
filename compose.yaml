@@ -1,0 +1,23 @@
+services:
+  database:
+    image: postgres:alpine3.22
+    ports:
+      - 5435:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: adonis
+      POSTGRES_PASSWORD: supersecret
+      POSTGRES_DB: oseparler
+  redis:
+    image: redis:7.0.11-alpine
+    ports:
+      - 6379:6379
+  mailer:
+    image: axllent/mailpit:v1.27.7
+    ports:
+      - 8025:8025
+      - 1025:1025
+
+volumes:
+  db_data:
